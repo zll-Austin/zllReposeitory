@@ -1,0 +1,190 @@
+####设置服务器参数
+server:
+ port: 8080
+ #port: 8081
+ #error:
+  #path: /error
+ servlet: 
+  context-path: /
+ tomcat:
+  uri-encoding: utf-8
+  #max-treads: 500
+  basedir: E:/WorkTable/logs
+
+##设置证书参数
+# ssl: #设置证书参数
+#  key-store: zll.p12
+#  key-alias: tomcathttps
+#  key-store-password: 123456
+
+#配置使用application_dev.properties配置文件启动项目,或者修改App.java
+#spring:
+# profiles:
+#  active: dev
+
+spring:
+ ###配置thymeleaf参数
+ thymeleaf:
+  #是否开启缓存,开发时可设置为false,默认为true
+  cache: true
+  #检查模板是否存在,默认为true
+  check-template: true
+  #检查模板位置是否存在,默认为true
+  check-template-location: false
+  #模板文件编码
+  encoding: UTF-8
+  #模板文件位置
+  prefix: classPath:/templates/
+  #Content-Type配置
+  servlet:
+   content-type: text/html
+  #模板文件后缀
+  suffix: .html
+  
+ ###FreeMarker配置参数
+ freemarker:
+  #HttpServletRequest的属性是否可以覆盖controller中的model的同命项
+  allow-request-override: false
+  #HttpSession的属性是否可以覆盖controller中的model的同命项
+  allow-session-override: false
+  #是否开启缓存
+  cache: false
+  #模板文件编码
+  charset: UTF-8
+  #是否检查模板位置
+  check-template-location: true
+  #Content-type的值
+  content-type: text/html
+  #是否将HttpServletRequest中的属性添加到Model中
+  expose-request-attributes: false
+  #是否将HttpSession中的属性添加到Model中
+  expose-session-attributes: false
+  #模板文件后缀
+  suffix: .ftl
+  #模板文件位置
+  template-loader-path: classpath:/templates/
+
+ ###配置fastjson的响应编码
+ http:
+  encoding:
+   force-response: true
+   
+ ###配置静态资源位置和定义过滤规则
+ mvc:
+  static-path-pattern: /static/**
+ resources:
+  static-locations: classpath:/static/
+  
+ ###配置文件上传下载相关参数
+ servlet:
+  multipart:
+   #是否开启文件上传支持,默认为true
+   enabled: true
+   #文件写入磁盘的阈值,默认为0
+   file-size-threshold: 0
+   #上传文件临时保存位置
+   location: E:\\WorkTable\\file
+   #上传文件单个最大大小,默认时1M
+   max-file-size: 1MB
+   #多文件上传时文件的总大小
+   max-request-size: 1MB
+   #文件是否延迟解析,默认为false
+   resolve-lazily: false
+   
+ ###数据库连接配置
+ datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  type: com.alibaba.druid.pool.DruidDataSource
+  url: jdbc:mysql://localhost:3306/zll?useUnicode=true&characterEncoding=gbk&useSSL=false&&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  username: root
+  password: 123456
+
+ #redis配置
+ redis:  #database: 0
+  #host: 127.0.0.1
+  #port: 6379
+  #password: 123@456
+  cluster:
+   ports:
+   - 8001
+   - 8002
+   - 8003
+   - 8004
+   - 8005
+   - 8006
+   host: 192.168.58.142
+   poolConfig:
+    max-total: 8
+    max-idle: 8
+    max-wait-millis: -1
+    min-idle: 0
+  jedis:      pool:        max-active: 8
+        max-idle: 8 
+        max-wait: -1ms
+        min-idle: 0
+   
+
+ #redis缓存
+ cache:
+  cache-names:
+  - c1
+  - c2
+  redis:
+   time-to-live: 1800s
+   
+ #Security参数配置
+ #security:
+ # user:
+ #  name: zll
+ #  password: 123456
+ #  roles: admin
+
+###配置输出日志信息
+logging:
+# path: E:/WorkTable/logs/
+ level:
+  com:
+   favorites: DEBUG
+  org:
+   springframework:
+    web: DEBUG
+   hibernate: DEBUG
+ 
+###配置book对象参数
+#book:
+# id: 007
+# name: 般若波罗蜜
+# author: 猴子请来的逗逼
+# price: 250
+
+###配置user对象参数,但不能使用user.name/user.lang 等参数会被system.getproperties参数覆盖
+#usermess:
+# name: 叫我爸爸
+# address: earth
+# favorites:
+#  - 足球
+#  - 跑步
+#  - 吹牛
+
+#配置userList对象参数
+#users:
+# usermess:
+#  - name: 叫我爸爸
+#    address: earth
+#    favorites:
+#     - 足球
+#     - 跑步
+#     - 吹牛
+#  - name: 叫我爷爷
+#    address: China
+#    favorites:
+#     - 喝酒
+#     - 吃肉
+#     - 吹牛
+#  - name: 永远的爸爸
+#    address: 上海
+#    favorites:
+#     - 棍子
+#     - 棒子
+#     - 皮带
+#     - 混合双打
